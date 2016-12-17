@@ -1,7 +1,6 @@
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.views import generic
 
 from app.method import MethodFinder
 from app.news import NewsFinder
@@ -11,18 +10,10 @@ from hometask.forms import MethodFindForm, AuthorizeForm, AskForm
 USER_COOKIE = 'user_id'
 
 
-class Index(generic.TemplateView):
-    template_name = 'index.html'
-
-    def dispatch(self, request, *args, **kwargs):
-        if request.COOKIES.get(USER_COOKIE):
-            return HttpResponseRedirect(reverse('profile'))
-        return super(Index, self).dispatch(request, *args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        return {
-            'form': AuthorizeForm()
-        }
+def index(request):
+    if request.COOKIES.get(USER_COOKIE):
+        return HttpResponseRedirect(reverse('profile'))
+    return render(request, 'index.html', {"form": AuthorizeForm()})
 
 
 def auth(request):

@@ -20,7 +20,7 @@ from hometask import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.Index.as_view(), name='index'),
+    url(r'^$', views.index, name='index'),
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^auth/$', views.auth, name='auth'),
     url(r'^news_list/$', views.news_list, name='news_list'),
