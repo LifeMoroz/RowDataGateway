@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Сервис спроси у преподавателя</title>
+</head>
+<body>
+<h2>Спроси у преподавателя</h2>
+<a href="{% url 'index' %}">Go to main</a>
+{% if form %}
+<form action='{% url 'ask_view' %}' method="POST">
+    {{ form }}
+    {% csrf_token %}<br><br>
+    <button type="submit">Submit</button>
+</form>
+{% else %}
+{{ message }}
+{% endif %}
+</body>
+</html>

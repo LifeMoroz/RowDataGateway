@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список методичек</title>
+</head>
+<body>
+<a href="{% url 'index' %}">Go to main</a>
+<form action="{% url 'method_list' %}">
+    {{ form }}
+</form>
+<br>
+{% for obj in object_list %}
+    <div>
+    <a href="{{ obj.link}}">{{ obj.title }}</a>
+    </div>
+{% endfor %}
+</body>
+</html>

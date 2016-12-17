@@ -16,6 +16,14 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from hometask import views
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', views.Index.as_view(), name='index'),
+    url(r'^profile/$', views.profile, name='profile'),
+    url(r'^auth/$', views.auth, name='auth'),
+    url(r'^news_list/$', views.news_list, name='news_list'),
+    url(r'^method_list/$', views.method_list, name='method_list'),
+    url(r'^ask/$', views.ask, name='ask_view')
 ]

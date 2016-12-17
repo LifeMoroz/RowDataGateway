@@ -9,6 +9,11 @@ class BaseFinder(object):
 
     @classmethod
     def find(cls, **kwargs):
+        """
+
+        :param kwargs:
+        :return: list(gateway)
+        """
         where = ''
         data = []
         for key, value in kwargs.items():

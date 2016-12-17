@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Свежие новости</title>
+</head>
+<body>
+<a href="{% url 'index' %}">Go to main</a>
+<br>
+{% for news in news %}
+    <div>
+    <h1>{{ news.title }}</h1>
+    <pre>{{ news.text }}</pre>
+    </div>
+{% endfor %}
+</body>
+</html>

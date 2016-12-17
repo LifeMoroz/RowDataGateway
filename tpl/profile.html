@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Привет, {{ user.first_name }}</title>
+</head>
+<body>
+Приветствую, {{ user.first_name }} {{ user.last_name }}<br>
+<a href="{% url 'news_list' %}">Почитать новости</a><br>
+<a href="{% url 'method_list' %}">Скачать методички</a><br>
+<a href="{% url 'ask_view' %}">Задать вопрос преподавателю</a><br>
+</body>
+</html>
