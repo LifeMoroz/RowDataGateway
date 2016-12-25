@@ -1,0 +1,15 @@
+from row_data_gateway.finder import BaseFinder
+from row_data_gateway.gateway import BaseGateway
+
+
+class Question(BaseGateway):
+    _table_name = 'news'
+    # Жестко задаем поля
+    id = None
+    text = None
+
+
+class QuestionFinder(BaseFinder):
+    gateway = Question
+
+

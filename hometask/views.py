@@ -4,6 +4,7 @@ from django.shortcuts import render
 
 from app.method import MethodFinder
 from app.news import NewsFinder
+from app.question import Question, QuestionFinder
 from app.student import StudentFinder
 from hometask.forms import MethodFindForm, AuthorizeForm, AskForm
 
@@ -64,8 +65,15 @@ def method_list(request):
 
 
 def ask(request):
-    form = AskForm()
     if request.method == 'GET':
+        form = AskForm()
         return render(request, 'ask.html', {"form": form})
     elif request.method == 'POST':
+        form = AskForm(data=request.POST)
+        q = QuestionFinder.find()
+        if q:
+            new_id = max(q, lambda x: x.id).id + 1
+        else:
+            new_id = 0
+        Question(id=new_id, text=form.cleaned_data['text']).insert()
         return render(request, 'ask.html', {"message": 'Вопрос успешно зарегистрирован!'})

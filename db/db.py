@@ -21,7 +21,6 @@ class Database:
         sql = sql.format(unescape) if unescape else sql
         try:
             if params:
-                print(sql)
                 return self._cursor.execute(sql, params)
             else:
                 return self._cursor.execute(sql)
