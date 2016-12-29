@@ -42,9 +42,9 @@ class BaseGateway(object):
         return data
 
     def __replace_or_insert(self, method):
-        fields = ', '.format(self.get_fields())
+        fields = ', '.join(self.get_fields())
         values = ':' + ', :'.join(self.get_row_data().keys())
-        sql = "{method} INTO {table_name} {fields} VALUES {values}"
+        sql = "{method} INTO {table_name} ({fields}) VALUES ({values})"
         sql = sql.format(method=method, table_name=self._table_name, fields=fields, values=values)
         db.execute(sql, self.get_row_data())
 

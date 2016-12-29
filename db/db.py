@@ -11,9 +11,7 @@ class Database:
 
     @staticmethod
     def get_database():
-        if not Database.db:
-            Database.db = Database()
-        return Database.db
+        return Database()
 
     @staticmethod
     def execute(sql, params=None, unescape=None):

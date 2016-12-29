@@ -70,10 +70,12 @@ def ask(request):
         return render(request, 'ask.html', {"form": form})
     elif request.method == 'POST':
         form = AskForm(data=request.POST)
-        q = QuestionFinder.find()
-        if q:
-            new_id = max(q, lambda x: x.id).id + 1
-        else:
-            new_id = 0
-        Question(id=new_id, text=form.cleaned_data['text']).insert()
-        return render(request, 'ask.html', {"message": 'Вопрос успешно зарегистрирован!'})
+        if form.is_valid():
+            q = QuestionFinder.find()
+            if q:
+                new_id = max([x.id for x in q]) + 1
+            else:
+                new_id = 0
+            Question(id=new_id, text=form.cleaned_data['text']).insert()
+            return render(request, 'ask.html', {"message": 'Вопрос успешно зарегистрирован!'})
+        return HttpResponseRedirect(reverse('ask'))
