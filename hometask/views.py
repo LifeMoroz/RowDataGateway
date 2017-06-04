@@ -35,16 +35,20 @@ def auth(request):
     return render(request, 'index.html', {'form': form})
 
 
-def profile(request):
-    cookie = request.COOKIES.get(USER_COOKIE)
-    user = None
-    if cookie:
-        users = StudentFinder.find(id=cookie)
-        if not users:
-            return HttpResponseRedirect(reverse('index'))
-        else:
-            user = users[0]
-    return render(request, 'profile.html', {"user": user})
+class ProfileController:
+    @staticmethod
+    def get(request):
+        cookie = request.COOKIES.get(USER_COOKIE)
+        user = None
+        questions = None
+        if cookie:
+            users = StudentFinder.find(id=cookie)
+            if not users:
+                return HttpResponseRedirect(reverse('index'))
+            else:
+                user = users[0]
+            questions = QuestionFinder.find(student_id=user.id)
+        return render(request, 'profile.html', {"user": user, "questions": questions})
 
 
 def news_list(request):
