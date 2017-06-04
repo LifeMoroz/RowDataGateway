@@ -5,7 +5,7 @@ from django.shortcuts import render
 from app.method import MethodFinder
 from app.news import NewsFinder
 from app.question import Question, QuestionFinder
-from app.student import StudentFinder
+from app.student import UserFinder
 from hometask.forms import MethodFindForm, AuthorizeForm, AskForm
 
 USER_COOKIE = 'user_id'
@@ -21,9 +21,9 @@ def auth(request):
     if request.method == 'POST':
         form = AuthorizeForm(request.POST)
         if form.is_valid():
-            user = StudentFinder.find(first_name=form.cleaned_data['first_name'],
-                                      last_name=form.cleaned_data['last_name'],
-                                      password=form.cleaned_data['password'])
+            user = UserFinder.find(first_name=form.cleaned_data['first_name'],
+                                   last_name=form.cleaned_data['last_name'],
+                                   password=form.cleaned_data['password'])
             if not user:
                 return render(request, 'fail.html', {'message': 'No such User'})
             redirect = HttpResponseRedirect(reverse('profile'))
@@ -42,7 +42,7 @@ class ProfileController:
         user = None
         questions = None
         if cookie:
-            users = StudentFinder.find(id=cookie)
+            users = UserFinder.find(id=cookie)
             if not users:
                 return HttpResponseRedirect(reverse('index'))
             else:

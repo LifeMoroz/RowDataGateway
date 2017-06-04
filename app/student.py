@@ -11,7 +11,7 @@ class Student(BaseGateway):
     password = None
 
 
-class StudentFinder(BaseFinder):
+class UserFinder(BaseFinder):
     gateway = Student
 
 
