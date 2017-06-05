@@ -9,6 +9,7 @@ class Question(BaseGateway):
     text = None
     student_id = None
 
+
 class QuestionFinder(BaseFinder):
     gateway = Question
 
