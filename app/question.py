@@ -7,8 +7,7 @@ class Question(BaseGateway):
     # Жестко задаем поля
     id = None
     text = None
-    question_id = None
-
+    student_id = None
 
 class QuestionFinder(BaseFinder):
     gateway = Question
