@@ -9,5 +9,12 @@
 <a href="{% url 'news_list' %}">Почитать новости</a><br>
 <a href="{% url 'method_list' %}">Скачать методички</a><br>
 <a href="{% url 'ask_view' %}">Задать вопрос преподавателю</a><br>
+Ваши вопросы<br>
+{% for news in questions %}
+    <div>
+    <h3>Вопрос № {{ news.id }}</h3>
+    <pre>{{ news.text }}</pre>
+    </div>
+{% endfor %}
 </body>
 </html>
