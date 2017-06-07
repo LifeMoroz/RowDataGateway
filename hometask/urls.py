@@ -23,8 +23,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
     url(r'^profile/$', hometask.gof.ProfileController.get, name='profile'),
-    url(r'^auth/$', views.auth, name='auth'),
-    url(r'^news_list/$', views.news_list, name='news_list'),
-    url(r'^method_list/$', views.method_list, name='method_list'),
-    url(r'^ask/$', views.ask, name='ask_view')
+    url(r'^auth/$', views.UserController.auth, name='auth'),
+    url(r'^news_list/$', views.NewsList.get, name='news_list'),
+    url(r'^method_list/$', views.TMView.get, name='method_list'),
+    url(r'^ask/$', views.QView.dispatch, name='ask_view')
 ]
